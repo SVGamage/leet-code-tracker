@@ -9,7 +9,7 @@ import { Brain } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <Brain className="h-6 w-6" />
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container py-8">
+      <main className="container py-8 px-4">
         <FilterControls />
         <CategoryGrid />
       </main>
