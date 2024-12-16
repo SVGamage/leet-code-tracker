@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model User {
+  id        Int            @id @default(autoincrement())
+  email     String         @unique
+  userId    String         @unique
+  questions UserQuestion[]
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  Question Question[]
+}
+
+model Question {
+  id         Int        @id @default(autoincrement())
+  title      String
+  difficulty Difficulty
+  categoryId Int        @map("category_id")
+  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  UserQuestion UserQuestion[]
+  category     Category       @relation(fields: [categoryId], references: [id])
+}
+
+model UserQuestion {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @map("user_id")
+  questionId Int      @map("question_id")
+  isDone     Boolean  @default(false) @map("is_done")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  user     User     @relation(fields: [userId], references: [id])
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@unique([userId, questionId])
+}
