@@ -16,7 +16,7 @@ export function CategoryView({ category }: CategoryViewProps) {
     <div className="min-h-screen bg-background">
       <div className="container py-8">
         <div className="mb-8">
-          <Link href="/">
+          <Link href="/dashboard">
             <Button variant="ghost" size="sm" className="gap-2">
               <ChevronLeft className="h-4 w-4" />
               Back to Categories
