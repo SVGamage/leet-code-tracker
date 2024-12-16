@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GlobeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   LoginLink,
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
+import { SquareCode } from "lucide-react";
 
 export function LandingPage() {
   return (
@@ -24,24 +24,24 @@ export function LandingPage() {
           transition={{ delay: 0.2 }}
           className="flex justify-center mb-8"
         >
-          <GlobeIcon className="h-16 w-16 text-primary animate-pulse" />
+          <SquareCode className="h-16 w-16 text-primary animate-pulse" />
         </motion.div>
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
+          className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-secondary-foreground to-primary"
         >
-          Welcome to the Future
+          Leet Code Tracker
         </motion.h1>
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-foreground mb-8 max-w-2xl mx-auto"
         >
-          Experience the next generation of digital innovation with our
-          cutting-edge platform.
+          Track, Analyze, and Conquer LeetCode Challenges—Your Personalized
+          Progress Tracker Awaits!
         </motion.p>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -58,7 +58,7 @@ export function LandingPage() {
           <Button
             variant="outline"
             size="lg"
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+            className=" bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
           >
             <LoginLink>Login</LoginLink>
           </Button>
