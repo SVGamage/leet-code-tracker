@@ -9,10 +9,14 @@ import { redirect } from "next/navigation";
 import LoadingSpinner from "@/components/loading-spinner";
 import UserAvatar from "@/components/user-avatar";
 import { useEnsureUserInDatabase } from "@/hooks/use-ensure-user-in-database";
+import { useGetCurrentUser } from "@/hooks/use-get-current-user";
+import { Role } from "@/lib/types";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
+  const currentUser = useGetCurrentUser(user);
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -46,7 +50,7 @@ export default function Dashboard() {
       </header>
 
       <main className="container py-8 px-4">
-        <FilterControls />
+        <FilterControls role={currentUser?.role || Role.USER} />
         <CategoryGrid />
       </main>
     </div>
