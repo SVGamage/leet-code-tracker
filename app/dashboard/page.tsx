@@ -53,7 +53,7 @@ export default function Dashboard() {
 
       <main className="container py-8 px-4">
         <FilterControls role={currentUser?.role || Role.USER} />
-        <CategoryGrid />
+        <CategoryGrid categories={categories} />
       </main>
     </div>
   );

@@ -12,22 +12,24 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
-  const progress = (category.completedQuestions / category.totalQuestions) * 100;
+  const progress = (category.done_questions / category.total_questions) * 100;
 
   return (
-    <Link href={`/category/${category.id}`}>
+    <Link href={`/category/${category.category_id}`}>
       <Card className="group transition-all hover:shadow-lg">
         <CardHeader className="cursor-pointer select-none">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CategoryIcon name={category.iconName} className="h-5 w-5" />
-              <h3 className="text-lg font-semibold">{category.name}</h3>
+              <CategoryIcon name="Hash" className="h-5 w-5" />
+              <h3 className="text-lg font-semibold">
+                {category.category_name}
+              </h3>
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </div>
           <div className="mt-2 flex items-center justify-between text-sm text-muted-foreground">
             <span>
-              {category.completedQuestions} / {category.totalQuestions} completed
+              {category.done_questions} / {category.total_questions} completed
             </span>
             <span>{Math.round(progress)}%</span>
           </div>

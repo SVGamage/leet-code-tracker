@@ -4,20 +4,8 @@ SELECT
     c.description AS category_description,
     c.created_at AS category_created_at,
     COUNT(q.id)::integer AS total_questions,
-    COUNT(uq.is_done) FILTER (WHERE uq.is_done = TRUE)::integer AS done_questions,
-    COALESCE(
-        JSON_AGG(
-            JSON_BUILD_OBJECT(
-                'id', q.id,
-                'title', q.title,
-                'url', q.url,
-                'difficulty', q.difficulty,
-                'created_at', q.created_at,
-                'is_done', COALESCE(uq.is_done, FALSE)
-            )
-        ) FILTER (WHERE q.id IS NOT NULL),
-        '[]'
-    ) AS questions
+    COUNT(uq.is_done) FILTER (WHERE uq.is_done = TRUE)::integer AS done_questions
+
 FROM 
     "Category" c
 LEFT JOIN 

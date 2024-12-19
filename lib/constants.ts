@@ -1,7 +1,7 @@
 export const DIFFICULTY_COLORS = {
-  Easy: "green",
-  Medium: "yellow",
-  Hard: "red",
+  EASY: "green",
+  MEDIUM: "yellow",
+  HARD: "red",
 } as const;
 
 export const TABLE_CONFIG = {

@@ -37,7 +37,7 @@ export function QuestionTable({ questions }: QuestionTableProps) {
           {questions.map((question) => (
             <TableRow key={question.id}>
               <TableCell>
-                <Checkbox checked={question.completed} />
+                <Checkbox checked={question.is_done} />
               </TableCell>
               <TableCell>
                 <a
