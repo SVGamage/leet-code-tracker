@@ -11,7 +11,7 @@ import {
 import { Question } from "@/lib/types";
 import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
-import { cn } from "@/lib/utils";
+import { cn, difficultyMapper } from "@/lib/utils";
 import { DIFFICULTY_COLORS, TABLE_CONFIG } from "@/lib/constants";
 
 interface QuestionTableProps {
@@ -58,7 +58,7 @@ export function QuestionTable({ questions }: QuestionTableProps) {
                     `text-${DIFFICULTY_COLORS[question.difficulty]}-500`
                   )}
                 >
-                  {question.difficulty}
+                  {difficultyMapper(question.difficulty)}
                 </Badge>
               </TableCell>
             </TableRow>

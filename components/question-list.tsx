@@ -3,7 +3,7 @@
 import { Difficulty, Question } from "@/lib/types";
 import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
-import { cn } from "@/lib/utils";
+import { cn, difficultyMapper } from "@/lib/utils";
 
 interface QuestionListProps {
   questions: Question[];
@@ -38,7 +38,7 @@ export function QuestionList({ questions }: QuestionListProps) {
                 "border-red-500 text-red-500"
             )}
           >
-            {question.difficulty}
+            {difficultyMapper(question.difficulty)}
           </Badge>
         </li>
       ))}
