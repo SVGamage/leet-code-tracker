@@ -11,11 +11,13 @@ import UserAvatar from "@/components/user-avatar";
 import { useEnsureUserInDatabase } from "@/hooks/use-ensure-user-in-database";
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { Role } from "@/lib/types";
+import { useGetCategories } from "@/hooks/use-get-categories";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
   const currentUser = useGetCurrentUser(user);
+  const categories = useGetCategories(currentUser?.id as number);
 
   if (isLoading) {
     return (

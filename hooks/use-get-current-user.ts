@@ -18,7 +18,6 @@ export const useGetCurrentUser = (user: KindeUser | null) => {
         }
 
         const userData = await response.json();
-        console.log("User data:", userData);
         setCurrentUser(userData);
       } catch (error) {
         console.error("Error fetching user:", error);

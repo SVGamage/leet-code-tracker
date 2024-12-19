@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["typedSql"]
 }
 
 datasource db {
@@ -38,6 +39,7 @@ model Category {
 model Question {
   id         Int        @id @default(autoincrement())
   title      String
+  url        String?
   difficulty Difficulty
   categoryId Int        @map("category_id")
   createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)

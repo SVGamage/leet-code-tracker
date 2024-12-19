@@ -8,7 +8,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { SquareCode } from "lucide-react";
 
-export function LandingPage() {
+export default function LandingPage() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
