@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoadingSpinner from "@/components/loading-spinner";
@@ -23,7 +22,7 @@ import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-catego
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   const currentUser = useGetCurrentUser(user);
-  const questions = useGetQuestionsForCategory(
+  const { questions, pending } = useGetQuestionsForCategory(
     currentUser?.id as number,
     parseInt(params.id)
   );
@@ -59,7 +58,13 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
           )}
         </div>
         <CategoryHeader category={questions[0]} />
-        <QuestionTable questions={questions[0].questions} />
+        {pending ? (
+          <div className="flex justify-center items-center h-screen">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <QuestionTable questions={questions[0].questions} />
+        )}
       </div>
     </div>
   );

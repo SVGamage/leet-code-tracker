@@ -29,5 +29,5 @@ export const useGetQuestionsForCategory = (
     };
     getQuestions();
   }, [categoryId, userId]);
-  return questions;
+  return { questions, pending: false };
 };

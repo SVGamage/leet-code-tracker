@@ -12,12 +12,14 @@ import { useEnsureUserInDatabase } from "@/hooks/use-ensure-user-in-database";
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { Role } from "@/lib/types";
 import { useGetCategories } from "@/hooks/use-get-categories";
+import { useState } from "react";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
+  const [loading, setLoading] = useState(true);
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
   const currentUser = useGetCurrentUser(user);
-  const categories = useGetCategories(currentUser?.id as number);
+  const { categories, pending } = useGetCategories(currentUser?.id as number);
 
   if (isLoading) {
     return (
@@ -53,7 +55,13 @@ export default function Dashboard() {
 
       <main className="container py-8 px-4">
         <FilterControls role={currentUser?.role || Role.USER} />
-        <CategoryGrid categories={categories} />
+        {pending ? (
+          <div className="flex justify-center items-center h-screen">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <CategoryGrid categories={categories} />
+        )}
       </main>
     </div>
   );

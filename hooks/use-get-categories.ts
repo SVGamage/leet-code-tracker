@@ -27,5 +27,5 @@ export const useGetCategories = (userId: number) => {
     };
     getCategories();
   }, [userId]);
-  return categories;
+  return { categories, pending: false };
 };
