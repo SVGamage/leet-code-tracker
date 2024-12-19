@@ -1,7 +1,6 @@
 "use client";
 
-import { Metadata } from "next";
-import { categories } from "@/lib/data";
+
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoadingSpinner from "@/components/loading-spinner";
