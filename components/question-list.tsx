@@ -1,6 +1,6 @@
 "use client";
 
-import { Question } from "@/lib/types";
+import { Difficulty, Question } from "@/lib/types";
 import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ export function QuestionList({ questions }: QuestionListProps) {
           key={question.id}
           className="flex items-center gap-3 rounded-lg p-2 hover:bg-muted/50"
         >
-          <Checkbox checked={question.completed} />
+          <Checkbox checked={question.is_done} />
           <a
             href={question.url}
             target="_blank"
@@ -30,9 +30,12 @@ export function QuestionList({ questions }: QuestionListProps) {
             variant="outline"
             className={cn(
               "w-16 justify-center",
-              question.difficulty === "Easy" && "border-green-500 text-green-500",
-              question.difficulty === "Medium" && "border-yellow-500 text-yellow-500",
-              question.difficulty === "Hard" && "border-red-500 text-red-500"
+              question.difficulty === Difficulty.EASY &&
+                "border-green-500 text-green-500",
+              question.difficulty === Difficulty.MEDIUM &&
+                "border-yellow-500 text-yellow-500",
+              question.difficulty === Difficulty.HARD &&
+                "border-red-500 text-red-500"
             )}
           >
             {question.difficulty}
