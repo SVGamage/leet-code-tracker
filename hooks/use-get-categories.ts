@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 
 export const useGetCategories = (userId: number) => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const getCategories = async () => {
+      setLoading(true);
       try {
         const response = await fetch("/api/category", {
           method: "POST",
@@ -23,9 +25,11 @@ export const useGetCategories = (userId: number) => {
         setCategories(categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
       }
     };
     getCategories();
   }, [userId]);
-  return categories;
+  return { categories, loading };
 };

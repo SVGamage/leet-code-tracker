@@ -6,8 +6,10 @@ export const useGetQuestionsForCategory = (
   categoryId: number
 ) => {
   const [questions, setQuestions] = useState<QuestionsWithCategory[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     const getQuestions = async () => {
       try {
         const response = await fetch("/api/questions", {
@@ -25,9 +27,11 @@ export const useGetQuestionsForCategory = (
         setQuestions(questions);
       } catch (error) {
         console.error("Error fetching questions:", error);
+      } finally {
+        setLoading(false);
       }
     };
     getQuestions();
   }, [categoryId, userId]);
-  return questions;
+  return { questions, loading };
 };

@@ -23,7 +23,8 @@ import { useProfileStore } from "@/lib/store";
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   const currentUser = useProfileStore((state) => state.profile);
-  const questions = useGetQuestionsForCategory(
+  console.log(currentUser);
+  const { questions, loading } = useGetQuestionsForCategory(
     currentUser?.id as number,
     parseInt(params.id)
   );
@@ -59,7 +60,11 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
           )}
         </div>
         <CategoryHeader category={questions[0]} />
-        <QuestionTable questions={questions[0].questions} />
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <QuestionTable questions={questions[0].questions} />
+        )}
       </div>
     </div>
   );

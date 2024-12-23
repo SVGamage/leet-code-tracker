@@ -19,7 +19,7 @@ export default function Dashboard() {
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
   useGetCurrentUser(user);
   const currentUser = useProfileStore((state) => state.profile);
-  const categories = useGetCategories(currentUser?.id as number);
+  const { categories, loading } = useGetCategories(currentUser?.id as number);
 
   if (isLoading) {
     return (
@@ -55,7 +55,11 @@ export default function Dashboard() {
 
       <main className="container py-8 px-4">
         <FilterControls role={currentUser?.role || Role.USER} />
-        <CategoryGrid categories={categories} />
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <CategoryGrid categories={categories} />
+        )}
       </main>
     </div>
   );
