@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { User } from "@prisma/client";
+import { useProfileStore } from "@/lib/store";
 
 export const useGetCurrentUser = (user: KindeUser | null) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-
+  const setProfileData = useProfileStore((state) => state.setProfileData);
   useEffect(() => {
     const getCurrentUser = async () => {
       if (!user || !user.email) return;
@@ -19,6 +20,7 @@ export const useGetCurrentUser = (user: KindeUser | null) => {
 
         const userData = await response.json();
         setCurrentUser(userData);
+        setProfileData(userData);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -26,6 +28,4 @@ export const useGetCurrentUser = (user: KindeUser | null) => {
 
     getCurrentUser();
   }, [user]);
-
-  return currentUser;
 };

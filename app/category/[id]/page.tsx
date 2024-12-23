@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoadingSpinner from "@/components/loading-spinner";
@@ -12,6 +11,7 @@ import { Role } from "@/lib/types";
 import { CategoryHeader } from "@/components/category-header";
 import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
+import { useProfileStore } from "@/lib/store";
 
 // export const metadata: Metadata = {
 //   title: "Category Details - LeetCode Progress Tracker",
@@ -22,7 +22,7 @@ import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-catego
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
-  const currentUser = useGetCurrentUser(user);
+  const currentUser = useProfileStore((state) => state.profile);
   const questions = useGetQuestionsForCategory(
     currentUser?.id as number,
     parseInt(params.id)

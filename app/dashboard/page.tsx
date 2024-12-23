@@ -12,11 +12,13 @@ import { useEnsureUserInDatabase } from "@/hooks/use-ensure-user-in-database";
 import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { Role } from "@/lib/types";
 import { useGetCategories } from "@/hooks/use-get-categories";
+import { useProfileStore } from "@/lib/store";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
-  const currentUser = useGetCurrentUser(user);
+  useGetCurrentUser(user);
+  const currentUser = useProfileStore((state) => state.profile);
   const categories = useGetCategories(currentUser?.id as number);
 
   if (isLoading) {
