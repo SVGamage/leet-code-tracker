@@ -23,7 +23,7 @@ const formSchema = z.object({
   description: z.string().optional(),
 });
 
-export function AddCategoryForm() {
+export function AddDataStructureForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,10 +46,10 @@ export function AddCategoryForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter Category Name" {...field} />
+                <Input placeholder="Enter Data Structure Name" {...field} />
               </FormControl>
               <FormDescription>
-                This is category name.
+                This is data structure name.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -62,10 +62,10 @@ export function AddCategoryForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="Enter Category Description(optional)" {...field} />
+                <Input placeholder="Enter Data Structure Description(optional)" {...field} />
               </FormControl>
               <FormDescription>
-              This is category description.
+              This is data structure description.
               </FormDescription>
               <FormMessage />
             </FormItem>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Role } from "@/lib/types";
 import { Button } from "./ui/button";
 import {
   Select,
@@ -10,10 +9,7 @@ import {
   SelectValue,
 } from "./ui/select";
 
-interface FilterControlsProps {
-  role: string;
-}
-export function FilterControls({ role }: FilterControlsProps) {
+export function FilterControls() {
   return (
     <div className="flex flex-row justify-between  mb-8">
       <div className="mb-8 flex flex-wrap items-center gap-4">
@@ -44,13 +40,6 @@ export function FilterControls({ role }: FilterControlsProps) {
           </SelectContent>
         </Select>
       </div>
-      {role === Role.ADMIN && (
-        <div className="flex justify-end gap-4">
-          <Button variant="outline" className="bg-secondary">
-            Add Category
-          </Button>
-        </div>
-      )}
     </div>
   );
 }

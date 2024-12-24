@@ -15,6 +15,9 @@ import { useGetCategories } from "@/hooks/use-get-categories";
 import { useProfileStore } from "@/lib/store";
 import { useEffect } from "react";
 import { useRehydrate } from "@/hooks/use-rehydrated";
+import { Button } from "@/components/ui/button";
+import Header from "@/components/header";
+import ActionButton from "@/components/action-button";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -36,28 +39,15 @@ export default function Dashboard() {
   }
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Brain className="h-6 w-6" />
-            <h1 className="text-xl font-bold">LeetCode Progress Tracker</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <SearchBar />
-            <UserAvatar
-              name={user?.given_name as string}
-              email={user?.email as string}
-              src={user?.picture as string}
-              fallback={user?.given_name?.[0] as string}
-            />
-
-            <ModeToggle />
-          </div>
-        </div>
-      </header>
-
+      <Header user={user} />
+      <div className="flex flex-row justify-end gap-4 m-4">
+        <ActionButton actionName="Category" role={currentUser?.role as Role} />
+        <ActionButton
+          actionName="Data Structure"
+          role={currentUser?.role as Role}
+        />
+      </div>
       <main className="container py-8 px-4">
-        <FilterControls role={currentUser?.role || Role.USER} />
         {loading ? (
           <LoadingSpinner />
         ) : (

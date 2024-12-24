@@ -20,7 +20,7 @@ interface QuestionTableProps {
 
 export function QuestionTable({ questions }: QuestionTableProps) {
   return (
-    <div className="rounded-md border">
+    <div className={questions.length === 0 ? "" : "rounded-md border"}>
       {questions.length === 0 ? (
         <div className="flex justify-center items-center min-h-max">
           <p className="text-3xl text-muted-foreground">No questions found.</p>

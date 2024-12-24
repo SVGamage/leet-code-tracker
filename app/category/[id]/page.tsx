@@ -13,6 +13,7 @@ import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
+import ActionButton from "@/components/action-button";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -33,10 +34,6 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
     redirect("/api/auth/login");
   }
 
-  // if (!questions || questions.length === 0) {
-  //   return <div>Category not found</div>;
-  // }
-
   return (
     <div className="min-h-screen bg-background px-4">
       <div className="container py-8">
@@ -47,11 +44,10 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
               Back to Categories
             </Button>
           </Link>
-          {currentUser?.role === Role.ADMIN && (
-            <Button variant="outline" size="sm" className="gap-2 bg-secondary">
-              Add Question
-            </Button>
-          )}
+          <ActionButton
+            actionName="Question"
+            role={currentUser?.role as Role}
+          />
         </div>
 
         {loading ? (
