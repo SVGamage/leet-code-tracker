@@ -53,15 +53,20 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
             </Button>
           )}
         </div>
-        <CategoryHeader category={questions[0]} />
+
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <QuestionTable
-            questions={
-              !questions || questions.length === 0 ? [] : questions[0].questions
-            }
-          />
+          <>
+            <CategoryHeader category={questions[0]} />
+            <QuestionTable
+              questions={
+                !questions || questions.length === 0
+                  ? []
+                  : questions[0].questions
+              }
+            />
+          </>
         )}
       </div>
     </div>

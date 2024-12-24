@@ -10,12 +10,18 @@ interface CategoryHeaderProps {
 }
 
 export function CategoryHeader({ category }: CategoryHeaderProps) {
+  const progress =
+    !category || category === undefined
+      ? 0
+      : (category.done_questions / category.total_questions) * 100;
   return (
     <Card className="mb-8">
       <CardContent className="pt-6">
         <div className="flex items-center gap-4 mb-4">
           {!category || category === undefined ? (
-            <div className="text-gray-400">No category selected</div>
+            <div className="text-muted-foreground text-xl">
+              No category selected
+            </div>
           ) : (
             <>
               <div className="p-3 bg-primary/10 rounded-lg">
@@ -31,10 +37,7 @@ export function CategoryHeader({ category }: CategoryHeaderProps) {
             </>
           )}
         </div>
-        <Progress
-          value={(category.done_questions / category.total_questions) * 100}
-          className="h-2"
-        />
+        <Progress value={progress} className="h-2" />
       </CardContent>
     </Card>
   );
