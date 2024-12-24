@@ -14,7 +14,7 @@ export function CategoryHeader({ category }: CategoryHeaderProps) {
     <Card className="mb-8">
       <CardContent className="pt-6">
         <div className="flex items-center gap-4 mb-4">
-          {!category ? (
+          {!category || category === undefined ? (
             <div className="text-gray-400">No category selected</div>
           ) : (
             <>
