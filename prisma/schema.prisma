@@ -37,15 +37,17 @@ model Category {
 }
 
 model Question {
-  id         Int        @id @default(autoincrement())
-  title      String
-  url        String?
-  difficulty Difficulty
-  categoryId Int        @map("category_id")
-  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  id              Int        @id @default(autoincrement())
+  title           String
+  url             String?
+  difficulty      Difficulty
+  categoryId      Int        @map("category_id")
+  dataStructureId Int?       @map("data_structure_id")
+  createdAt       DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
 
-  UserQuestion UserQuestion[]
-  category     Category       @relation(fields: [categoryId], references: [id])
+  UserQuestion  UserQuestion[]
+  category      Category       @relation(fields: [categoryId], references: [id])
+  DataStructure DataStructure? @relation(fields: [dataStructureId], references: [id])
 }
 
 model UserQuestion {
@@ -59,4 +61,13 @@ model UserQuestion {
   question Question @relation(fields: [questionId], references: [id])
 
   @@unique([userId, questionId])
+}
+
+model DataStructure {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  Question Question[]
 }
