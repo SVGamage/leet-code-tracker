@@ -14,13 +14,6 @@ import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-catego
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
 
-// export const metadata: Metadata = {
-//   title: "Category Details - LeetCode Progress Tracker",
-//   description: "View detailed progress for this category",
-// };
-
-// Required for static site generation with dynamic routes
-
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
   useRehydrate();
@@ -40,9 +33,9 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
     redirect("/api/auth/login");
   }
 
-  if (!questions || questions.length === 0) {
-    return <div>Category not found</div>;
-  }
+  // if (!questions || questions.length === 0) {
+  //   return <div>Category not found</div>;
+  // }
 
   return (
     <div className="min-h-screen bg-background px-4">
