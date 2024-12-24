@@ -12,6 +12,7 @@ import { CategoryHeader } from "@/components/category-header";
 import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
+import { useRehydrate } from "@/hooks/use-rehydrated";
 
 // export const metadata: Metadata = {
 //   title: "Category Details - LeetCode Progress Tracker",
@@ -21,9 +22,9 @@ import { useProfileStore } from "@/lib/store";
 // Required for static site generation with dynamic routes
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
-  const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
+  const { isAuthenticated, isLoading } = useKindeBrowserClient();
+  useRehydrate();
   const currentUser = useProfileStore((state) => state.profile);
-  console.log(currentUser);
   const { questions, loading } = useGetQuestionsForCategory(
     currentUser?.id as number,
     parseInt(params.id)

@@ -1,5 +1,6 @@
 import { User, Role } from "@prisma/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type ProfileData = {
   id: number;
@@ -15,10 +16,15 @@ export type State = {
 export type Action = {
   setProfileData: (user: User) => void;
 };
-export const useProfileStore = create<State & Action>()((set) => ({
-  profile: null,
-  setProfileData: (user: User) =>
-    set((state) => ({
-      profile: { ...user },
-    })),
-}));
+export const useProfileStore = create<State & Action>()(
+  persist(
+    (set) => ({
+      profile: null,
+      setProfileData: (user: User) =>
+        set((state) => ({
+          profile: { ...user },
+        })),
+    }),
+    { name: "profile-store", skipHydration: true }
+  )
+);

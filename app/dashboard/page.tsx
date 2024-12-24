@@ -13,11 +13,14 @@ import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { Role } from "@/lib/types";
 import { useGetCategories } from "@/hooks/use-get-categories";
 import { useProfileStore } from "@/lib/store";
+import { useEffect } from "react";
+import { useRehydrate } from "@/hooks/use-rehydrated";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
   useEnsureUserInDatabase(user, isAuthenticated as boolean);
   useGetCurrentUser(user);
+  useRehydrate();
   const currentUser = useProfileStore((state) => state.profile);
   const { categories, loading } = useGetCategories(currentUser?.id as number);
 
