@@ -7,6 +7,8 @@ export interface Question {
   is_done: boolean;
   created_at: string;
   url: string;
+  data_structure_id: number;
+  data_structure_name: string;
 }
 
 export interface Category {
@@ -16,6 +18,20 @@ export interface Category {
   category_created_at: string;
   total_questions: number;
   done_questions: number;
+}
+
+export interface DataStructure {
+  id: number;
+  name: string;
+  description: string | null;
+  createdAt: Date;
+}
+
+export interface RawCategory {
+  id: number;
+  name: string;
+  description: string | null;
+  createdAt: Date;
 }
 
 export interface Questions {

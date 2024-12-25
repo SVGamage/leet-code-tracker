@@ -12,6 +12,9 @@ export const TABLE_CONFIG = {
   question: {
     label: "Question",
   },
+  dataStructure: {
+    label: "Data Structure",
+  },
   difficulty: {
     width: "100px",
     label: "Difficulty",

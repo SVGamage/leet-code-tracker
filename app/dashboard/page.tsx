@@ -15,9 +15,11 @@ import { useGetCategories } from "@/hooks/use-get-categories";
 import { useProfileStore } from "@/lib/store";
 import { useEffect } from "react";
 import { useRehydrate } from "@/hooks/use-rehydrated";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
-import ActionButton from "@/components/action-button";
+import PopupForm from "@/components/popup-form";
+import { AddCategoryForm } from "@/components/add-category-form";
+import { AddDataStructureForm } from "@/components/add-datastructure-form";
+import { AddQuestionForm } from "@/components/add-question-form";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -41,11 +43,16 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <Header user={user} />
       <div className="flex flex-row justify-end gap-4 m-4">
-        <ActionButton actionName="Category" role={currentUser?.role as Role} />
-        <ActionButton
-          actionName="Data Structure"
-          role={currentUser?.role as Role}
-        />
+        {currentUser?.role === Role.ADMIN && (
+          <>
+            <PopupForm actionName="Category" Form={AddCategoryForm} />
+            <PopupForm
+              actionName="Data Structure"
+              Form={AddDataStructureForm}
+            />
+            <PopupForm actionName="Question" Form={AddQuestionForm} />
+          </>
+        )}
       </div>
       <main className="container py-8 px-4">
         {loading ? (

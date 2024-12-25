@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { AddDataStructureFormSubmit } from "@/actions/actions";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -32,13 +33,9 @@ export function AddDataStructureForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form action={AddDataStructureFormSubmit} className="space-y-8">
         <FormField
           control={form.control}
           name="name"
@@ -48,9 +45,6 @@ export function AddDataStructureForm() {
               <FormControl>
                 <Input placeholder="Enter Data Structure Name" {...field} />
               </FormControl>
-              <FormDescription>
-                This is data structure name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -62,11 +56,11 @@ export function AddDataStructureForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="Enter Data Structure Description(optional)" {...field} />
+                <Input
+                  placeholder="Enter Data Structure Description(optional)"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-              This is data structure description.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

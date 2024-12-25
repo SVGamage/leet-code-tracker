@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoadingSpinner from "@/components/loading-spinner";
 import { redirect } from "next/navigation";
@@ -13,7 +12,6 @@ import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
-import ActionButton from "@/components/action-button";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -44,10 +42,6 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
               Back to Categories
             </Button>
           </Link>
-          <ActionButton
-            actionName="Question"
-            role={currentUser?.role as Role}
-          />
         </div>
 
         {loading ? (

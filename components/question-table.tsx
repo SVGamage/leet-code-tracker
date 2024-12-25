@@ -33,6 +33,7 @@ export function QuestionTable({ questions }: QuestionTableProps) {
                 {TABLE_CONFIG.status.label}
               </TableHead>
               <TableHead>{TABLE_CONFIG.question.label}</TableHead>
+              <TableHead>{TABLE_CONFIG.dataStructure.label}</TableHead>
               <TableHead className={`w-[${TABLE_CONFIG.difficulty.width}]`}>
                 {TABLE_CONFIG.difficulty.label}
               </TableHead>
@@ -53,6 +54,9 @@ export function QuestionTable({ questions }: QuestionTableProps) {
                   >
                     {question.title}
                   </a>
+                </TableCell>
+                <TableCell>
+                  <p>{question.data_structure_name}</p>
                 </TableCell>
                 <TableCell>
                   <Badge
