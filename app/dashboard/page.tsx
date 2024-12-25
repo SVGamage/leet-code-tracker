@@ -19,6 +19,7 @@ import Header from "@/components/header";
 import PopupForm from "@/components/popup-form";
 import { AddCategoryForm } from "@/components/add-category-form";
 import { AddDataStructureForm } from "@/components/add-datastructure-form";
+import { AddQuestionForm } from "@/components/add-question-form";
 
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -49,6 +50,7 @@ export default function Dashboard() {
               actionName="Data Structure"
               Form={AddDataStructureForm}
             />
+            <PopupForm actionName="Question" Form={AddQuestionForm} />
           </>
         )}
       </div>

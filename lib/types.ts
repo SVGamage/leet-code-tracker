@@ -18,6 +18,20 @@ export interface Category {
   done_questions: number;
 }
 
+export interface DataStructure {
+  id: number;
+  name: string;
+  description: string | null;
+  createdAt: Date;
+}
+
+export interface RawCategory {
+  id: number;
+  name: string;
+  description: string | null;
+  createdAt: Date;
+}
+
 export interface Questions {
   questions: Question[];
 }

@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { AddCategoryFormSubmit } from "@/actions/actions";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -32,13 +33,9 @@ export function AddCategoryForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form action={AddCategoryFormSubmit} className="space-y-8">
         <FormField
           control={form.control}
           name="name"

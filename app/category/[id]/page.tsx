@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetCurrentUser } from "@/hooks/use-get-current-user";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoadingSpinner from "@/components/loading-spinner";
 import { redirect } from "next/navigation";
@@ -13,8 +12,6 @@ import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
-import PopupForm from "@/components/popup-form";
-import { AddCategoryForm } from "@/components/add-category-form";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -45,9 +42,6 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
               Back to Categories
             </Button>
           </Link>
-          {/* {currentUser?.role === Role.ADMIN && (
-            <PopupForm actionName="Question" Form={AddCategoryForm} />
-          )} */}
         </div>
 
         {loading ? (
