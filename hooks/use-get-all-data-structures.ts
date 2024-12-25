@@ -9,7 +9,9 @@ export const useGetAllDataStructures = () => {
     const getAllDataStructures = async () => {
       setLoadingDataStructure(true);
       try {
-        const response = await fetch("/api/data-structure");
+        const response = await fetch("/api/data-structure", {
+          method: "POST",
+        });
 
         if (!response.ok) {
           console.error(
