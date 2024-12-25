@@ -48,9 +48,6 @@ export function AddDataStructureForm() {
               <FormControl>
                 <Input placeholder="Enter Data Structure Name" {...field} />
               </FormControl>
-              <FormDescription>
-                This is data structure name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -62,11 +59,11 @@ export function AddDataStructureForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="Enter Data Structure Description(optional)" {...field} />
+                <Input
+                  placeholder="Enter Data Structure Description(optional)"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-              This is data structure description.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -48,9 +48,6 @@ export function AddCategoryForm() {
               <FormControl>
                 <Input placeholder="Enter Category Name" {...field} />
               </FormControl>
-              <FormDescription>
-                This is category name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -62,11 +59,11 @@ export function AddCategoryForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="Enter Category Description(optional)" {...field} />
+                <Input
+                  placeholder="Enter Category Description(optional)"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-              This is category description.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

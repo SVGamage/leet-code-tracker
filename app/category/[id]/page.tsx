@@ -13,7 +13,8 @@ import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
-import ActionButton from "@/components/action-button";
+import PopupForm from "@/components/popup-form";
+import { AddCategoryForm } from "@/components/add-category-form";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -44,10 +45,9 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
               Back to Categories
             </Button>
           </Link>
-          <ActionButton
-            actionName="Question"
-            role={currentUser?.role as Role}
-          />
+          {/* {currentUser?.role === Role.ADMIN && (
+            <PopupForm actionName="Question" Form={AddCategoryForm} />
+          )} */}
         </div>
 
         {loading ? (
