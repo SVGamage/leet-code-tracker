@@ -7,6 +7,8 @@ export interface Question {
   is_done: boolean;
   created_at: string;
   url: string;
+  data_structure_id: number;
+  data_structure_name: string;
 }
 
 export interface Category {

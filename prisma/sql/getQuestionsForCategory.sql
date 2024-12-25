@@ -13,7 +13,9 @@ SELECT
                 'url', q.url,
                 'difficulty', q.difficulty,
                 'created_at', q.created_at,
-                'is_done', COALESCE(uq.is_done, FALSE)
+                'is_done', COALESCE(uq.is_done, FALSE),
+                'data_structure_id' , COALESCE(ds.id),
+                'data_structure_name', COALESCE(ds.name)
             )
         ) FILTER (WHERE q.id IS NOT NULL),
         '[]'
@@ -24,6 +26,8 @@ LEFT JOIN
     "Question" q ON c.id = q.category_id
 LEFT JOIN 
     "UserQuestion" uq ON q.id = uq.question_id AND uq.user_id = $1
+LEFT JOIN
+    "DataStructure" ds ON q.data_structure_id = ds.id
 WHERE 
     c.id = $2
 GROUP BY 
