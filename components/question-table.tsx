@@ -15,12 +15,15 @@ import { cn, difficultyMapper } from "@/lib/utils";
 import { DIFFICULTY_COLORS, TABLE_CONFIG } from "@/lib/constants";
 import { revalidatePath } from "next/cache";
 import { UpdateQuestionDoneStatus } from "@/actions/actions";
+import { useProfileStore } from "@/lib/store";
+import { QuestionCheckBox } from "./question-check-box";
 
 interface QuestionTableProps {
   questions: Question[];
 }
 
 export function QuestionTable({ questions }: QuestionTableProps) {
+  const currentUser = useProfileStore((state) => state.profile);
   return (
     <div className={questions.length === 0 ? "" : "rounded-md border"}>
       {questions.length === 0 ? (
@@ -45,15 +48,10 @@ export function QuestionTable({ questions }: QuestionTableProps) {
             {questions.map((question) => (
               <TableRow key={question.id}>
                 <TableCell>
-                  <Checkbox
-                    onCheckedChange={() =>
-                      UpdateQuestionDoneStatus(
-                        1,
-                        question.id,
-                        !question.is_done
-                      )
-                    }
-                    checked={question.is_done}
+                  <QuestionCheckBox
+                    questionId={question.id}
+                    is_done={question.is_done}
+                    userId={currentUser?.id as number}
                   />
                 </TableCell>
                 <TableCell>
