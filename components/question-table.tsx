@@ -13,6 +13,8 @@ import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
 import { cn, difficultyMapper } from "@/lib/utils";
 import { DIFFICULTY_COLORS, TABLE_CONFIG } from "@/lib/constants";
+import { revalidatePath } from "next/cache";
+import { UpdateQuestionDoneStatus } from "@/actions/actions";
 
 interface QuestionTableProps {
   questions: Question[];
@@ -43,7 +45,16 @@ export function QuestionTable({ questions }: QuestionTableProps) {
             {questions.map((question) => (
               <TableRow key={question.id}>
                 <TableCell>
-                  <Checkbox checked={question.is_done} />
+                  <Checkbox
+                    onCheckedChange={() =>
+                      UpdateQuestionDoneStatus(
+                        1,
+                        question.id,
+                        !question.is_done
+                      )
+                    }
+                    checked={question.is_done}
+                  />
                 </TableCell>
                 <TableCell>
                   <a

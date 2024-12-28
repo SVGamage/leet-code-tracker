@@ -52,3 +52,31 @@ export async function AddDataStructureFormSubmit(formData: FormData) {
     console.error(err);
   }
 }
+
+export async function UpdateQuestionDoneStatus(
+  userId: number,
+  questionId: number,
+  isDone: boolean
+) {
+  try {
+    await prisma.userQuestion.upsert({
+      where: {
+        userId_questionId: {
+          userId,
+          questionId,
+        },
+      },
+      update: {
+        isDone,
+      },
+      create: {
+        userId,
+        questionId,
+        isDone,
+      },
+    });
+    revalidatePath(`category/${questionId}`);
+  } catch (err) {
+    console.error(err);
+  }
+}
