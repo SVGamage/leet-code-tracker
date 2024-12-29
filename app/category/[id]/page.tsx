@@ -6,13 +6,11 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
-import { Role } from "@/lib/types";
 import { CategoryHeader } from "@/components/category-header";
 import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
-import { useEffect } from "react";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
