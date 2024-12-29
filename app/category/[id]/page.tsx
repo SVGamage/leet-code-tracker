@@ -34,7 +34,7 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-background px-4">
-      <div className="container py-8">
+      <div className="py-8">
         <div className="mb-8 flex justify-between">
           <Link href="/dashboard">
             <Button variant="outline" size="sm" className="gap-2">
