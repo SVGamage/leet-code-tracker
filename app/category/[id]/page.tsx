@@ -22,9 +22,6 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
     currentUser?.id as number,
     parseInt(params.id)
   );
-  useEffect(() => {
-    console.log(questions, loading);
-  }, [questions, loading]);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
