@@ -31,7 +31,7 @@ export const useGetQuestionsForCategory = (
         setLoading(false);
       }
     };
-    getQuestions();
+    userId && getQuestions();
   }, [categoryId, userId]);
   return { questions, loading };
 };

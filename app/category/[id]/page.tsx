@@ -12,6 +12,7 @@ import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
 import { useProfileStore } from "@/lib/store";
 import { useRehydrate } from "@/hooks/use-rehydrated";
+import { useEffect } from "react";
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
@@ -21,6 +22,9 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
     currentUser?.id as number,
     parseInt(params.id)
   );
+  useEffect(() => {
+    console.log(questions, loading);
+  }, [questions, loading]);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -45,7 +49,9 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
         </div>
 
         {loading ? (
-          <LoadingSpinner />
+          <div className="flex justify-center items-center h-screen">
+            <LoadingSpinner />
+          </div>
         ) : (
           <>
             <CategoryHeader category={questions[0]} />

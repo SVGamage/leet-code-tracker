@@ -29,7 +29,7 @@ export const useGetCategories = (userId: number) => {
         setLoading(false);
       }
     };
-    getCategories();
+    userId && getCategories();
   }, [userId]);
   return { categories, loading };
 };
