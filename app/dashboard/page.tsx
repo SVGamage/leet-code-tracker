@@ -54,7 +54,7 @@ export default function Dashboard() {
           </>
         )}
       </div>
-      <main className="container py-8 px-4">
+      <main className="py-8 px-4">
         {loading ? (
           <LoadingSpinner />
         ) : (
