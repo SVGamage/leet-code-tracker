@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
-import { Role } from "@/lib/types";
 import { CategoryHeader } from "@/components/category-header";
 import { QuestionTable } from "@/components/question-table";
 import { useGetQuestionsForCategory } from "@/hooks/use-get-questions-for-category";
@@ -34,7 +33,7 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-background px-4">
-      <div className="container py-8">
+      <div className="py-8">
         <div className="mb-8 flex justify-between">
           <Link href="/dashboard">
             <Button variant="outline" size="sm" className="gap-2">
@@ -45,7 +44,9 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
         </div>
 
         {loading ? (
-          <LoadingSpinner />
+          <div className="flex justify-center items-center h-screen">
+            <LoadingSpinner />
+          </div>
         ) : (
           <>
             <CategoryHeader category={questions[0]} />
