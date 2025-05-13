@@ -12,7 +12,8 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
-  const progress = (category.done_questions / category.total_questions) * 100;
+  const progress =
+    (category.done_questions / category.total_questions) * 100 || 0;
 
   return (
     <Link href={`/category/${category.category_id}`}>
